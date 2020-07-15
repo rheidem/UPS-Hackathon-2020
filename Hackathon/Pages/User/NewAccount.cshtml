@@ -1,0 +1,47 @@
+@page
+@model Hackathon.Pages_User.NewAccountModel
+
+@{
+    ViewData["Title"] = "NewAccount";
+}
+
+<h1>NewAccount</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="user.Name" class="control-label"></label>
+                <input asp-for="user.Name" class="form-control" />
+                <span asp-validation-for="user.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.Password" class="control-label"></label>
+                <input asp-for="user.Password" class="form-control" />
+                <span asp-validation-for="user.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.Email" class="control-label"></label>
+                <input asp-for="user.Email" class="form-control" />
+                <span asp-validation-for="user.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.UserType" class="control-label"></label>
+                <select asp-for="user.UserType" class="form-control"></select>
+                <span asp-validation-for="user.UserType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.Completed_Quizzes_JSON" class="control-label"></label>
+                <input asp-for="user.Completed_Quizzes_JSON" class="form-control" />
+                <span asp-validation-for="user.Completed_Quizzes_JSON" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
