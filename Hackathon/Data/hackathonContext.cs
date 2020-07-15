@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Hackathon.Models;
 
 namespace Hackathon.Data
 {
@@ -12,6 +13,10 @@ namespace Hackathon.Data
             : base(options)
         {
         }
+
+        public DbSet<Hackathon.Models.Question> Questions { get; set; }
+        public DbSet<Hackathon.Models.Quiz> Quizzes { get; set; }
+        public DbSet<Hackathon.Models.User> Users { get; set; }
 
     }
 }
