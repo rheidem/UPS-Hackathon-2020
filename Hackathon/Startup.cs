@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Hackathon.Data;
 
 namespace Hackathon
 {
@@ -24,6 +26,8 @@ namespace Hackathon
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddDbContext<hackathonContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("hackathonContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
