@@ -1,0 +1,76 @@
+@page
+@model Hackathon.Pages_Questions.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Question[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Question[0].NumPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Question[0].QuestionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Question[0].QuestionText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Question[0].QuestionCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Question[0].Correct_MCAnswer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Question[0].MCAnswers_JSON)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Question[0].Tags_JSON)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Question) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumPoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correct_MCAnswer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MCAnswers_JSON)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tags_JSON)
+            </td>
+            <td>|
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
