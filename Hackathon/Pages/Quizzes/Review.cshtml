@@ -1,0 +1,56 @@
+@page
+@using Hackathon.Models
+@model Hackathon.Pages_Quizzes.ReviewModel
+
+@{
+    ViewData["Title"] = "Review";
+}
+
+<h1>Review</h1>
+
+<h4>Completed_Quiz</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Completed_Quiz.ID" />
+            <div>
+                @Html.DisplayNameFor(model => model.Completed_Quiz.QuiztakerName)
+                @Html.DisplayFor(model => model.Completed_Quiz.QuiztakerName)
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.Completed_Quiz.CorrespondingQuizName)
+                @Html.DisplayFor(model => model.Completed_Quiz.CorrespondingQuizName)
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.Completed_Quiz.maxPoints)
+                @Html.DisplayFor(model => model.Completed_Quiz.maxPoints)
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.Completed_Quiz.QuizType)
+                @Html.DisplayFor(model => model.Completed_Quiz.QuizType)
+            </div>
+            @for(int i = 0; i < Model.Completed_Quiz.Answers.Count(); ++i)
+            {
+                <h3>Name: @Model.Quiz.Questions.ElementAt(i).Name</h3>
+                <h5>Number of Points: @Model.Quiz.Questions.ElementAt(i).NumPoints</h5>
+                <h5>Question Text: @Model.Quiz.Questions.ElementAt(i).QuestionText</h5>
+                <h5>Question Code: @Model.Quiz.Questions.ElementAt(i).QuestionCode</h5>
+                <h5>Correct MC Answer: @Model.Quiz.Questions.ElementAt(i).Correct_MCAnswer</h5>
+
+                <h3>Answer Text: @Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text</h3>
+                <div class="form-group">
+                    <label asp-for="@Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text" class="control-label"></label>
+                    <input asp-for="@Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text" class="form-control" />
+                    <span asp-validation-for="@Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

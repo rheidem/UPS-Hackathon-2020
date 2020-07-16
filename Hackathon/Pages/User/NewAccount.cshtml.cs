@@ -40,7 +40,7 @@ namespace Hackathon.Pages_User
                 return Page();
             }
 
-            user.Set_Completed_Quizzes_JSON();
+            //user.Set_Completed_Quizzes_JSON();
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 

@@ -15,6 +15,12 @@ namespace Hackathon.Models
     public class Completed_Quiz
     {
         [Required]
+        public int ID { get; set; }
+        
+        [Required,Display(Name="Quiz Taker")]
+        public string QuiztakerName { get; set; }
+
+        [Required]
         public string CorrespondingQuizName { get; set; }
 
         [Required]

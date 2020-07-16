@@ -29,21 +29,21 @@ namespace Hackathon.Models
         [Required]
         public UserType UserType { get; set; }
 
-        // COMPLETED QUIZZES
-        [NotMapped]
-        public IEnumerable<Completed_Quiz> Completed_Quizzes { get; set; }
-        public string Completed_Quizzes_JSON { get; set; }
+        // // COMPLETED QUIZZES
+        // [NotMapped]
+        // public IEnumerable<Completed_Quiz> Completed_Quizzes { get; set; }
+        // public string Completed_Quizzes_JSON { get; set; }
 
-        public void Set_Completed_Quizzes_JSON()
-        {
-            if(Completed_Quizzes != null)
-                Completed_Quizzes_JSON = JsonConvert.SerializeObject(Completed_Quizzes);
-        }
+        // public void Set_Completed_Quizzes_JSON()
+        // {
+        //     if(Completed_Quizzes != null)
+        //         Completed_Quizzes_JSON = JsonConvert.SerializeObject(Completed_Quizzes);
+        // }
         
-        public void Get_Completed_Quizzes_JSON()
-        {
-            if(Completed_Quizzes_JSON != null)
-                Completed_Quizzes = JsonConvert.DeserializeObject<IEnumerable<Completed_Quiz>>(Completed_Quizzes_JSON);
-        }
+        // public void Get_Completed_Quizzes_JSON()
+        // {
+        //     if(Completed_Quizzes_JSON != null)
+        //         Completed_Quizzes = JsonConvert.DeserializeObject<IEnumerable<Completed_Quiz>>(Completed_Quizzes_JSON);
+        // }
     }
 }

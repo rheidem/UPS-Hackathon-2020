@@ -17,6 +17,7 @@ namespace Hackathon.Data
         public DbSet<Hackathon.Models.Question> Questions { get; set; }
         public DbSet<Hackathon.Models.Quiz> Quizzes { get; set; }
         public DbSet<Hackathon.Models.User> Users { get; set; }
+        public DbSet<Hackathon.Models.Completed_Quiz> Completed_Quiz { get; set; }
 
     }
 }

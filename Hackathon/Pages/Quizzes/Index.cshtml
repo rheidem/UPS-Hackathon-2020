@@ -5,11 +5,8 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>All Quizzes</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -23,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Quiz) {
+        @foreach (var item in Model.Quiz) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -35,6 +32,46 @@
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
             </td>
         </tr>
-}
+        }
+    </tbody>
+</table>
+<p>
+    <a class="btn btn-primary" asp-page="Create">Create New</a>
+</p>
+<hr />
+<br>
+<h1>Pending/Graded Quizzes</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Completed_Quizzes.First().QuiztakerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Completed_Quizzes.First().CorrespondingQuizName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Completed_Quizzes.First().QuizType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Completed_Quizzes) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuiztakerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorrespondingQuizName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizType)
+            </td>
+            <td>
+                <a asp-page="./Review" asp-route-id="@item.ID">Review</a>
+            </td>
+        </tr>
+        }
     </tbody>
 </table>

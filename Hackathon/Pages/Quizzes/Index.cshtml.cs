@@ -20,10 +20,23 @@ namespace Hackathon.Pages_Quizzes
         }
 
         public IEnumerable<Quiz> Quiz { get;set; }
+        public IEnumerable<User> user { get; set; }
+        public IEnumerable<Completed_Quiz> Completed_Quizzes { get; set; } 
 
         public void OnGet()
         {
             Quiz = from q in _context.Quizzes select q;
+            user = from u in _context.Users select u;
+            Completed_Quizzes = from cq in _context.Completed_Quiz select cq;
+
+            // foreach(User u in user)
+            // {
+            //     u.Get_Completed_Quizzes_JSON();
+            //     foreach(Completed_Quiz cq in u.Completed_Quizzes)
+            //     {
+            //         Completed_Quizzes.Add(cq);
+            //     }   
+            // } 
         }
     }
 }
