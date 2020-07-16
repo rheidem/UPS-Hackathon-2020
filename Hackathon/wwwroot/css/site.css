@@ -145,3 +145,17 @@ i.fa-event {
 .my-table-striped tbody tr:nth-of-type(4n+1) {
   background-color: rgba(0, 0, 0, 0.05);
 }
+
+.columnOne {
+  float: left;
+  width: 70%;
+  padding: 1%;
+}
+.columnTwo {
+  float: right;
+  width: 15%;
+}
+.columnThree {
+  float: left;
+  width: 15%;
+}
