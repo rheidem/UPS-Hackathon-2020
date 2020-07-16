@@ -24,6 +24,9 @@ namespace Hackathon.Pages_Questions
         public async Task OnGetAsync()
         {
             Question = await _context.Questions.ToListAsync();
+            foreach(Question q in Question) {
+                q.Get_Tags_JSON();
+            }
         }
     }
 }

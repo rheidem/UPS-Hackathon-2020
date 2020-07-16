@@ -9,7 +9,19 @@ using Newtonsoft.Json;
 namespace Hackathon.Models
 {
     // QUESTIONTYPE ENUM
-    public enum QuestionType { multiple_choice, short_answer, video_response, coding, code_correction };
+    public enum QuestionType 
+    { 
+        [Display(Name="Multiple Choice")]
+        multiple_choice, 
+        [Display(Name="Short Answer")]
+        short_answer, 
+        [Display(Name="Video Response")]
+        video_response, 
+        [Display(Name="Coding Question")]
+        coding, 
+        [Display(Name="Code Correction")]
+        code_correction 
+    };
 
     // QUESTION CLASS
     public class Question
@@ -20,19 +32,23 @@ namespace Hackathon.Models
         [Required]
         public string Name { get; set; }
 
-        [Required]
+        [Required,Display(Name="Number of Points")]
         public int NumPoints { get; set; }
 
-        [Required]
+        [Required,Display(Name="Question Type")]
         public QuestionType QuestionType { get; set; }
 
-        [Required]
+        [Required,Display(Name="Question Text")]
         public string QuestionText { get; set; }
+
+        [Display(Name="Question Code")]
         public string QuestionCode { get; set; }
+
+        [Display(Name="Correct MC Answer")]
         public string Correct_MCAnswer { get; set; }
 
         // MC ANSWERS
-        [NotMapped]
+        [NotMapped,Display(Name="MC Answers")]
         public IEnumerable<string> MCAnswers { get; set; }
         public string MCAnswers_JSON { get; set; }
 
@@ -49,7 +65,7 @@ namespace Hackathon.Models
         }
 
         // TAGS
-        [NotMapped]
+        [NotMapped,Display(Name="Tags")]
         public IEnumerable<string> Tags { get; set; }
         public string Tags_JSON { get; set; }
 

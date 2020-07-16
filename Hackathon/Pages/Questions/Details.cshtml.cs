@@ -29,6 +29,8 @@ namespace Hackathon.Pages_Questions
             }
 
             Question = await _context.Questions.FirstOrDefaultAsync(m => m.ID == id);
+            Question.Get_Tags_JSON();
+            Question.Get_MCAnswers_JSON();
 
             if (Question == null)
             {

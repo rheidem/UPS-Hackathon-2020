@@ -42,25 +42,31 @@
             @Html.DisplayFor(model => model.Question.QuestionCode)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.MCAnswers)
+        </dt>
+        <dd class="col-sm-10">
+            @for(int i = 0; i < Model.Question.MCAnswers.Count(); i++)
+            {
+                <p>@(i + 1)) @Model.Question.MCAnswers.ElementAt(i)</p>
+            }
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Question.Correct_MCAnswer)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Question.Correct_MCAnswer)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Question.MCAnswers_JSON)
+            @Html.DisplayNameFor(model => model.Question.Tags)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Question.MCAnswers_JSON)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Question.Tags_JSON)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Question.Tags_JSON)
+            @foreach (string s in Model.Question.Tags)
+            {
+                <span>@s  </span>
+            }
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">All Questions</a>
 </div>
