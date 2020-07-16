@@ -1,0 +1,93 @@
+@page
+@model Hackathon.Pages_Quizzes.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Completed_Quiz</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Completed_Quiz.ID" />
+            <div class="form-group">
+                <label asp-for="Completed_Quiz.QuiztakerName" class="control-label"></label>
+                <input asp-for="Completed_Quiz.QuiztakerName" class="form-control" />
+                <span asp-validation-for="Completed_Quiz.QuiztakerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Completed_Quiz.CorrespondingQuizName" class="control-label"></label>
+                <input asp-for="Completed_Quiz.CorrespondingQuizName" class="form-control" />
+                <span asp-validation-for="Completed_Quiz.CorrespondingQuizName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Completed_Quiz.maxPoints" class="control-label"></label>
+                <input asp-for="Completed_Quiz.maxPoints" class="form-control" />
+                <span asp-validation-for="Completed_Quiz.maxPoints" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Completed_Quiz.pointsEarned" class="control-label"></label>
+                <input asp-for="Completed_Quiz.pointsEarned" class="form-control" />
+                <span asp-validation-for="Completed_Quiz.pointsEarned" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Completed_Quiz.QuizType" class="control-label"></label>
+                <select asp-for="Completed_Quiz.QuizType" class="form-control"></select>
+                <span asp-validation-for="Completed_Quiz.QuizType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Completed_Quiz.Answers_JSON" class="control-label"></label>
+                <input asp-for="Completed_Quiz.Answers_JSON" class="form-control" />
+                <span asp-validation-for="Completed_Quiz.Answers_JSON" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="AnswerScores" class="control-label"></label>
+                <input asp-for="AnswerScores" class="form-control" />
+                <span asp-validation-for="AnswerScores" class="text-danger"></span>
+            </div> *@
+            <div>
+                @Html.DisplayNameFor(model => model.Completed_Quiz.QuiztakerName)
+                @Html.DisplayFor(model => model.Completed_Quiz.QuiztakerName)
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.Completed_Quiz.CorrespondingQuizName)
+                @Html.DisplayFor(model => model.Completed_Quiz.CorrespondingQuizName)
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.Completed_Quiz.maxPoints)
+                @Html.DisplayFor(model => model.Completed_Quiz.maxPoints)
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.Completed_Quiz.QuizType)
+                @Html.DisplayFor(model => model.Completed_Quiz.QuizType)
+            </div>
+            @for(int i = 0; i < Model.Completed_Quiz.Answers.Count(); ++i)
+            {
+                <h3>Name: @Model.Quiz.Questions.ElementAt(i).Name</h3>
+                <h5>Number of Points: @Model.Quiz.Questions.ElementAt(i).NumPoints</h5>
+                <h5>Question Text: @Model.Quiz.Questions.ElementAt(i).QuestionText</h5>
+                <h5>Question Code: @Model.Quiz.Questions.ElementAt(i).QuestionCode</h5>
+                <h5>Correct MC Answer: @Model.Quiz.Questions.ElementAt(i).Correct_MCAnswer</h5>
+
+                <h3>Answer Text: @Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text</h3>
+                <div class="form-group">
+                    <label asp-for="@Model.Completed_Quiz.Answers.ElementAt(i).pointsGraded" class="control-label"></label>
+                    <input asp-for="@Model.Completed_Quiz.Answers.ElementAt(i).pointsGraded" class="form-control" />
+                    <span asp-validation-for="@Model.Completed_Quiz.Answers.ElementAt(i).pointsGraded" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+

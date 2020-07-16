@@ -70,7 +70,7 @@ namespace Hackathon.Pages_Quizzes
                 return Page();
             }
 
-            Completed_Quiz.Set_Completed_Quizzes_JSON();
+            Completed_Quiz.Set_Answers_JSON();
             _context.Completed_Quiz.Add(Completed_Quiz);
             await _context.SaveChangesAsync();
 

@@ -11,17 +11,20 @@ using Hackathon.Models;
 
 namespace Hackathon.Pages_Quizzes
 {
-    public class ReviewModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly Hackathon.Data.hackathonContext _context;
 
-        public ReviewModel(Hackathon.Data.hackathonContext context)
+        public EditModel(Hackathon.Data.hackathonContext context)
         {
             _context = context;
         }
 
         [BindProperty]
         public Completed_Quiz Completed_Quiz { get; set; }
+
+        // [BindProperty]
+        // public List<int> AnswerScores { get; set; }
         public Quiz Quiz { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -32,9 +35,16 @@ namespace Hackathon.Pages_Quizzes
             }
 
             Completed_Quiz = await _context.Completed_Quiz.FirstOrDefaultAsync(m => m.ID == id);
-            Completed_Quiz.Get_Completed_Quizzes_JSON();
+            Completed_Quiz.Get_Answers_JSON();
+            
             Quiz = await _context.Quizzes.FirstOrDefaultAsync(m => m.Name == Completed_Quiz.CorrespondingQuizName);
             Quiz.Get_Questions_JSON();
+
+            // AnswerScores = new List<int>();
+            // foreach(Question q in Quiz.Questions)
+            // {
+            //     AnswerScores.Add(0);
+            // }
 
             if (Completed_Quiz == null)
             {
@@ -51,16 +61,18 @@ namespace Hackathon.Pages_Quizzes
             {
                 return Page();
             }
-            
+
             Completed_Quiz.QuizType = QuizType.Graded;
 
+
+            Completed_Quiz.Get_Answers_JSON();
             foreach(Answer a in Completed_Quiz.Answers)
             {
                 Completed_Quiz.pointsEarned += a.pointsGraded;
 
             }
-            
-            Completed_Quiz.Set_Completed_Quizzes_JSON();
+
+            Completed_Quiz.Set_Answers_JSON();
             _context.Attach(Completed_Quiz).State = EntityState.Modified;
 
             try

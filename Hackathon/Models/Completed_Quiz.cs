@@ -37,13 +37,13 @@ namespace Hackathon.Models
         public List<Answer> Answers { get; set; }
         public string Answers_JSON { get; set; }
 
-        public void Set_Completed_Quizzes_JSON()
+        public void Set_Answers_JSON()
         {
             if(Answers != null)
                 Answers_JSON = JsonConvert.SerializeObject(Answers);
         }
         
-        public void Get_Completed_Quizzes_JSON()
+        public void Get_Answers_JSON()
         {
             if(Answers_JSON != null)
                 Answers = JsonConvert.DeserializeObject<List<Answer>>(Answers_JSON);
