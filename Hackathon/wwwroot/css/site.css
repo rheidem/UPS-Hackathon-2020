@@ -141,3 +141,7 @@ i.fa-event {
   padding: 1.0em 1.0em;
   margin-top: 0px;
 }
+
+.my-table-striped tbody tr:nth-of-type(4n+1) {
+  background-color: rgba(0, 0, 0, 0.05);
+}

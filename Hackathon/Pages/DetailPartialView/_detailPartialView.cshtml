@@ -21,6 +21,59 @@
             @Html.DisplayFor(model => model.QuestionType)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tags)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (string s in Model.Tags)
+            {
+                <span>@s  </span>
+            }
+        @if(@Model.QuestionType == QuestionType.multiple_choice)
+        {
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuestionText)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuestionText)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MCAnswers)
+        </dt>
+        <dd class="col-sm-10">
+            @for(int i = 0; i < Model.MCAnswers.Count(); i++)
+            {
+            <p><b>@(i + 1))</b> @Model.MCAnswers.ElementAt(i)</p>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Correct_MCAnswer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Correct_MCAnswer)
+        </dd>
+        }
+        else if(@Model.QuestionType == QuestionType.short_answer)
+        {
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuestionText)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuestionText)
+        </dd>
+        }
+        else if(@Model.QuestionType == QuestionType.video_response)
+        {
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuestionText)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuestionText)
+        </dd>
+        }
+        @* either coding question or code correction *@
+        else 
+        {
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.QuestionText)
         </dt>
         <dd class="col-sm-10">
@@ -32,29 +85,6 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.QuestionCode)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.MCAnswers)
-        </dt>
-        <dd class="col-sm-10">
-            @for(int i = 0; i < Model.MCAnswers.Count(); i++)
-            {
-                <p>@(i + 1)) @Model.MCAnswers.ElementAt(i)</p>
-            }
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Correct_MCAnswer)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Correct_MCAnswer)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Tags)
-        </dt>
-        <dd class="col-sm-10">
-            @foreach (string s in Model.Tags)
-            {
-                <span>@s  </span>
-            }
-        </dd>
+        }
     </dl>
 </div>
