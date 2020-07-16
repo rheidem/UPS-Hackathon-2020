@@ -46,7 +46,7 @@ namespace Hackathon.Pages_Quizzes
         {
 
             All_Questions = from q in _context.Questions select q;
-            IEnumerable<string> Question_Strings = Questions.Split('\n');
+            IEnumerable<string> Question_Strings = Questions.Split("\r\n");
 
             Quiz.Questions = new List<Question>(); // BUG - ONLY PUTS ONE QUESTION IN THE QUIZ
 

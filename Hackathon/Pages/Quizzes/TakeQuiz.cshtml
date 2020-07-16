@@ -23,27 +23,27 @@
                 </select>
                 <span asp-validation-for="Completed_Quiz.QuiztakerName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group invisible">
                 <label asp-for="Completed_Quiz.CorrespondingQuizName" class="control-label"></label>
                 <input asp-for="Completed_Quiz.CorrespondingQuizName" class="form-control" />
                 <span asp-validation-for="Completed_Quiz.CorrespondingQuizName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group invisible">
                 <label asp-for="Completed_Quiz.maxPoints" class="control-label"></label>
                 <input asp-for="Completed_Quiz.maxPoints" class="form-control" />
                 <span asp-validation-for="Completed_Quiz.maxPoints" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group invisible">
                 <label asp-for="Completed_Quiz.pointsEarned" class="control-label"></label>
                 <input asp-for="Completed_Quiz.pointsEarned" class="form-control" />
                 <span asp-validation-for="Completed_Quiz.pointsEarned" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group invisible">
                 <label asp-for="Completed_Quiz.QuizType" class="control-label"></label>
                 <select asp-for="Completed_Quiz.QuizType" class="form-control"></select>
                 <span asp-validation-for="Completed_Quiz.QuizType" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group invisible">
                 <label asp-for="Completed_Quiz.Answers_JSON" class="control-label"></label>
                 <input asp-for="Completed_Quiz.Answers_JSON" class="form-control" />
                 <span asp-validation-for="Completed_Quiz.Answers_JSON" class="text-danger"></span>
@@ -59,9 +59,9 @@
                 }
 
                 <div class="form-group">
-                    <label asp-for="@Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text" class="control-label"></label>
-                    <input asp-for="@Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text" class="form-control" />
-                    <span asp-validation-for="@Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text" class="text-danger"></span>
+                    <label asp-for="@Model.Answers[i]" class="control-label"></label>
+                    <input asp-for="@Model.Answers[i]" class="form-control" />
+                    <span asp-validation-for="@Model.Answers[i]" class="text-danger"></span>
                 </div>
             }
             <div class="form-group">

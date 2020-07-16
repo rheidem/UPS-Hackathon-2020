@@ -23,8 +23,8 @@ namespace Hackathon.Pages_Quizzes
         [BindProperty]
         public Completed_Quiz Completed_Quiz { get; set; }
 
-        // [BindProperty]
-        // public List<int> AnswerScores { get; set; }
+        [BindProperty]
+        public List<int> AnswerScores { get; set; }
         public Quiz Quiz { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -40,11 +40,11 @@ namespace Hackathon.Pages_Quizzes
             Quiz = await _context.Quizzes.FirstOrDefaultAsync(m => m.Name == Completed_Quiz.CorrespondingQuizName);
             Quiz.Get_Questions_JSON();
 
-            // AnswerScores = new List<int>();
-            // foreach(Question q in Quiz.Questions)
-            // {
-            //     AnswerScores.Add(0);
-            // }
+            AnswerScores = new List<int>();
+            foreach(Question q in Quiz.Questions)
+            {
+                AnswerScores.Add(0);
+            }
 
             if (Completed_Quiz == null)
             {
@@ -66,6 +66,12 @@ namespace Hackathon.Pages_Quizzes
 
 
             Completed_Quiz.Get_Answers_JSON();
+
+            for(int i = 0; i < Completed_Quiz.Answers.Count(); ++i)
+            {
+                Completed_Quiz.Answers.ElementAt(i).pointsGraded = AnswerScores.ElementAt(i);
+            }
+
             foreach(Answer a in Completed_Quiz.Answers)
             {
                 Completed_Quiz.pointsEarned += a.pointsGraded;
