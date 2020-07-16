@@ -47,26 +47,16 @@ namespace Hackathon.Pages_Quizzes
 
             All_Questions = from q in _context.Questions select q;
             IEnumerable<string> Question_Strings = Questions.Split('\n');
+
+            Quiz.Questions = new List<Question>(); // BUG - ONLY PUTS ONE QUESTION IN THE QUIZ
+
             foreach(string s in Question_Strings) 
             {
                 foreach(Question q in All_Questions)
                 {
                     if(s == q.Name)
                     {
-                        // Quiz.Questions.Append(new Question{
-                        //     Correct_MCAnswer = q.Correct_MCAnswer,
-                        //     ID = q.ID,
-                        //     MCAnswers = q.MCAnswers,
-                        //     MCAnswers_JSON = q.MCAnswers_JSON,
-                        //     Name = q.Name,
-                        //     NumPoints = q.NumPoints,
-                        //     QuestionCode = q.QuestionCode,
-                        //     QuestionText = q.QuestionText,
-                        //     QuestionType = q.QuestionType,
-                        //     Tags = q.Tags,
-                        //     Tags_JSON = q.Tags_JSON
-                        // });
-                        
+                        Quiz.Questions.Add(q);
                     }
                 }
             }

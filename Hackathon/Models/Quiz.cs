@@ -25,7 +25,7 @@ namespace Hackathon.Models
 
         // QUESTIONS
         [NotMapped]
-        public IEnumerable<Question> Questions { get; set; }
+        public IList<Question> Questions { get; set; }
         public string Questions_JSON { get; set; }
 
         public void Set_Questions_JSON()
@@ -37,7 +37,7 @@ namespace Hackathon.Models
         public void Get_Questions_JSON()
         {
             if(Questions_JSON != null)
-                Questions = JsonConvert.DeserializeObject<IEnumerable<Question>>(Questions_JSON);
+                Questions = JsonConvert.DeserializeObject<IList<Question>>(Questions_JSON);
         }
     }
 }
