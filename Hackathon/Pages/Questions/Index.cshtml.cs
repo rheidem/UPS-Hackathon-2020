@@ -19,14 +19,24 @@ namespace Hackathon.Pages_Questions
             _context = context;
         }
 
-        public IList<Question> Question { get;set; }
+        public IEnumerable<Question> Question { get;set; }
+        
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
 
-        public async Task OnGetAsync()
+        public void OnGet()
         {
-            Question = await _context.Questions.ToListAsync();
+
+            Question = from q in _context.Questions select q;
+
             foreach(Question q in Question) {
                 q.Get_Tags_JSON();
             }
+
+            Question = from q in Question 
+                            where q.Tags.Contains(SearchTerm) || string.IsNullOrEmpty(SearchTerm)
+                            orderby q.Name
+                            select q;
         }
     }
 }
