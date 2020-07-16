@@ -17,10 +17,10 @@ namespace Hackathon.Models
         [Required]
         public int ID { get; set; }
         
-        [Required,Display(Name="Quiz Taker")]
+        [Required,Display(Name="Applicant Tested")]
         public string QuiztakerName { get; set; }
 
-        [Required]
+        [Required,Display(Name="Quiz Taken")]
         public string CorrespondingQuizName { get; set; }
 
         [Required]

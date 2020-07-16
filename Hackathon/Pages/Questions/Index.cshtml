@@ -1,26 +1,40 @@
 @page
+@using Hackathon.Models
 @model Hackathon.Pages_Questions.IndexModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+<br>
+<h1>All Questions</h1>
+<hr />
+<br>
+<div class="btn-group">
+    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Create New Question
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" asp-route-qt="@QuestionType.multiple_choice" asp-page="Create">Mutltiple Choice</a>
+    <a class="dropdown-item" asp-route-qt="@QuestionType.short_answer" asp-page="Create">Short Answer</a>
+    <a class="dropdown-item" asp-route-qt="@QuestionType.video_response" asp-page="Create">Video Response</a>
+    <a class="dropdown-item" asp-route-qt="@QuestionType.coding" asp-page="Create">Coding Question</a>
+    <a class="dropdown-item" asp-route-qt="@QuestionType.code_correction" asp-page="Create">Code Correction</a>
+    </div>
+</div>
+<br>
+<br>
 <form method="get">
     <div class="form-group">
         <div class="input-group">
             <input type="search" class="form-control" asp-for="SearchTerm"/>
             <span class="input-group-btn">
-                <button class="btn btn-outline-primary">Search</button>
+                <button class="btn btn-primary">Search</button>
             </span>
         </div>
     </div>
 </form>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>

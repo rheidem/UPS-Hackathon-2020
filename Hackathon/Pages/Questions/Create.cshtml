@@ -1,13 +1,15 @@
 @page
+@using Hackathon.Models
 @model Hackathon.Pages_Questions.CreateModel
 
 @{
     ViewData["Title"] = "Create";
 }
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-<h1>Create</h1>
+<br>
+<h1>Create Question</h1>
 
-<h4>Question</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,17 +17,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Question.Name" class="control-label"></label>
-                <input asp-for="Question.Name" class="form-control" />
+                <input asp-for="Question.Name" class="form-control"/>
                 <span asp-validation-for="Question.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Question.NumPoints" class="control-label"></label>
-                <input asp-for="Question.NumPoints" class="form-control" />
+                <input asp-for="Question.NumPoints" class="form-control" type="number" />
                 <span asp-validation-for="Question.NumPoints" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Question.QuestionType" class="control-label"></label>
-                <select class="form-control" asp-for="Question.QuestionType" 
+                <select class="form-control" asp-for="Question.QuestionType"  
                     asp-items="@Model.QuestionTypes">
                 </select>
                 <span asp-validation-for="Question.QuestionType" class="text-danger"></span>
@@ -35,23 +37,35 @@
                 <input asp-for="Question.QuestionText" class="form-control" />
                 <span asp-validation-for="Question.QuestionText" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Question.QuestionCode" class="control-label"></label>
-                <input asp-for="Question.QuestionCode" class="form-control" />
-                <span asp-validation-for="Question.QuestionCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            @if(@Model.Question.QuestionType == QuestionType.multiple_choice)
+            {
+            <div id="MCAnswers" class="form-group">
                 <label asp-for="@Model.MCAnswers" class="control-label"></label>
+                <i class="fas fa-question my-tooltip float-right">
+                    <span class="my-tooltiptext">Type answers for the Multiple Choice Question on each line</span>
+                </i>
                 <textarea asp-for="@Model.MCAnswers" class="form-control" rows="4"></textarea>
                 <span asp-validation-for="@Model.MCAnswers" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div id="CorrectMCAnswer" class="form-group">
                 <label asp-for="Question.Correct_MCAnswer" class="control-label"></label>
                 <input asp-for="Question.Correct_MCAnswer" class="form-control" />
                 <span asp-validation-for="Question.Correct_MCAnswer" class="text-danger"></span>
             </div>
+            }
+            else if(@Model.Question.QuestionType == QuestionType.code_correction || @Model.Question.QuestionType == QuestionType.coding)
+            {
+            <div id="QuestionCode" class="form-group">
+                <label asp-for="Question.QuestionCode" class="control-label"></label>
+                <input asp-for="Question.QuestionCode" class="form-control" />
+                <span asp-validation-for="Question.QuestionCode" class="text-danger"></span>
+            </div>
+            }
             <div class="form-group">
                 <label asp-for="@Model.Tags" class="control-label"></label>
+                <i class="fas fa-question my-tooltip float-right">
+                    <span class="my-tooltiptext">Each Question must have at least two (2) Tags, separated by spaces</span>
+                </i>
                 <textarea asp-for="@Model.Tags" class="form-control" rows="4"></textarea>
                 <span asp-validation-for="@Model.Tags" class="text-danger"></span>
             </div>

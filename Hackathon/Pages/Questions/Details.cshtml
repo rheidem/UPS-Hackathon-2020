@@ -1,22 +1,16 @@
 @page
+@using Hackathon.Models
 @model Hackathon.Pages_Questions.DetailsModel
 
 @{
     ViewData["Title"] = "Details";
 }
-
-<h1>Details</h1>
-
+<br>
+<h1>Question Details</h1>
+<h4 class="text-muted">@Model.Question.Name</h4>
 <div>
-    <h4>Question</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Question.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Question.Name)
-        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Question.NumPoints)
         </dt>
@@ -30,6 +24,59 @@
             @Html.DisplayFor(model => model.Question.QuestionType)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.Tags)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (string s in Model.Question.Tags)
+            {
+                <span>@s  </span>
+            }
+        @if(@Model.Question.QuestionType == QuestionType.multiple_choice)
+        {
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.QuestionText)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.QuestionText)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.MCAnswers)
+        </dt>
+        <dd class="col-sm-10">
+            @for(int i = 0; i < Model.Question.MCAnswers.Count(); i++)
+            {
+            <p><b>@(i + 1))</b> @Model.Question.MCAnswers.ElementAt(i)</p>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.Correct_MCAnswer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.Correct_MCAnswer)
+        </dd>
+        }
+        else if(@Model.Question.QuestionType == QuestionType.short_answer)
+        {
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.QuestionText)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.QuestionText)
+        </dd>
+        }
+        else if(@Model.Question.QuestionType == QuestionType.video_response)
+        {
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.QuestionText)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.QuestionText)
+        </dd>
+        }
+        @* either coding question or code correction *@
+        else 
+        {
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Question.QuestionText)
         </dt>
         <dd class="col-sm-10">
@@ -41,32 +88,39 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Question.QuestionCode)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Question.MCAnswers)
-        </dt>
-        <dd class="col-sm-10">
-            @for(int i = 0; i < Model.Question.MCAnswers.Count(); i++)
-            {
-                <p>@(i + 1)) @Model.Question.MCAnswers.ElementAt(i)</p>
-            }
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Question.Correct_MCAnswer)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Question.Correct_MCAnswer)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Question.Tags)
-        </dt>
-        <dd class="col-sm-10">
-            @foreach (string s in Model.Question.Tags)
-            {
-                <span>@s  </span>
-            }
-        </dd>
+        }
     </dl>
 </div>
+        @* @if(@Model.Question.QuestionType == QuestionType.multiple_choice)
+        {
+            <h5>@Model.Question.QuestionText</h5>
+            @for(int i = 0; i < Model.Question.MCAnswers.Count(); i++)
+            {
+                <p><b>@(i + 1))</b> @Model.Question.MCAnswers.ElementAt(i)</p>
+            }
+            <br>
+            <p class="text-muted">Correct Answer: @Model.Question.Correct_MCAnswer</p>
+        }
+        else if(@Model.Question.QuestionType == QuestionType.short_answer)
+        {
+            <h5>@Model.Question.QuestionText</h5>
+            <textarea class="form-control" rows="4"></textarea>
+        }
+        else if(@Model.Question.QuestionType == QuestionType.video_response)
+        {
+            <h5>@Model.Question.QuestionText</h5>
+            <textarea class="form-control" rows="4"></textarea>
+        }
+         either coding question or code correction 
+        else 
+        {
+            <h5>@Model.Question.QuestionText</h5>
+            <textarea class="form-control" rows="4">@Model.Question.QuestionCode</textarea>
+        } *@
+<hr />
+<br>
 <div>
-    <a asp-page="./Index">All Questions</a>
+    <a class="btn btn-outline-primary" asp-page="./Index">All Questions</a>
 </div>
+
+

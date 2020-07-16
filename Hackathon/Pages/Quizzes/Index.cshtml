@@ -4,10 +4,13 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<br>
 <h1>All Quizzes</h1>
-
-<table class="table">
+<hr />
+<p>
+    <a class="btn btn-primary" asp-page="Create">Create New Quiz</a>
+</p>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -36,13 +39,10 @@
         }
     </tbody>
 </table>
-<p>
-    <a class="btn btn-primary" asp-page="Create">Create New</a>
-</p>
 <hr />
 <br>
 <h1>Pending/Graded Quizzes</h1>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -52,7 +52,7 @@
                 @Html.DisplayNameFor(model => model.Completed_Quizzes.First().CorrespondingQuizName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Completed_Quizzes.First().QuizType)
+                Quiz Status
             </th>
             <th></th>
         </tr>
@@ -70,7 +70,7 @@
                 @Html.DisplayFor(modelItem => item.QuizType)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Review</a>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Review Quiz</a>
             </td>
         </tr>
         }

@@ -29,8 +29,10 @@ namespace Hackathon.Pages_Questions
             this.htmlHelper = htmlHelper;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(QuestionType qt)
         {
+            Question = new Question();
+            Question.QuestionType = qt;
             QuestionTypes = htmlHelper.GetEnumSelectList<QuestionType>();
             return Page();
         }
@@ -49,7 +51,9 @@ namespace Hackathon.Pages_Questions
 
             // Get the MCAnswers and Tags from bound variables and put in Question object
             Question.Tags = Tags.Split(' ');
-            Question.MCAnswers = MCAnswers.Split('\n');
+            if(MCAnswers != null){
+                Question.MCAnswers = MCAnswers.Split('\n');
+            }
 
             Question.Set_MCAnswers_JSON();
             Question.Set_Tags_JSON();
