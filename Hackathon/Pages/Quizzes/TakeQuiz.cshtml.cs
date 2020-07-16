@@ -7,28 +7,26 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Hackathon.Data;
 using Hackathon.Models;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace Hackathon.Pages_Quizzes
 {
-    public class TakeModel : PageModel
+    public class TakeQuizModel : PageModel
     {
         private readonly Hackathon.Data.hackathonContext _context;
 
-        public TakeModel(Hackathon.Data.hackathonContext context)
+        public TakeQuizModel(Hackathon.Data.hackathonContext context)
         {
             _context = context;
         }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public IActionResult OnGet(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Quiz = await _context.Quizzes.FirstOrDefaultAsync(m => m.ID == id);
+            Quiz = _context.Quizzes.FirstOrDefault(m => m.ID == id);
             Quiz.Get_Questions_JSON();
             foreach(Question q in Quiz.Questions)
             {
@@ -37,34 +35,33 @@ namespace Hackathon.Pages_Quizzes
 
             names = _context.Users.Select(x=>x.Name).Distinct();
 
-            Completed_Quiz = new Completed_Quiz();
+            // // -------------------------------------------------------------------
+            // Completed_Quiz = new Completed_Quiz();
 
-            Completed_Quiz.Answers = new List<Answer>();
+            // Completed_Quiz.Answers = new List<Answer>();
 
-            foreach(Question q in Quiz.Questions)
-            {
-                Completed_Quiz.Answers.Add(new Answer(q.QuestionType));
-            }
+            // foreach(Question q in Quiz.Questions)
+            // {
+            //     Completed_Quiz.Answers.Add(new Answer(q.QuestionType));
+            // }
 
-            Completed_Quiz.CorrespondingQuizName = Quiz.Name;
-            Completed_Quiz.maxPoints = Quiz.TotalPoints;
-            Completed_Quiz.QuizType = QuizType.Pending;
+            // Completed_Quiz.CorrespondingQuizName = Quiz.Name;
+            // Completed_Quiz.maxPoints = Quiz.TotalPoints;
+            // Completed_Quiz.QuizType = QuizType.Pending;
+            // // -------------------------------------------------------------------
 
             return Page();
         }
 
         [BindProperty]
         public Completed_Quiz Completed_Quiz { get; set; }
-        
-        [BindProperty]
-        public Quiz Quiz { get; set; }
+        public Quiz Quiz { get; private set; }
         public IEnumerable<string> names { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-
             if (!ModelState.IsValid)
             {
                 return Page();

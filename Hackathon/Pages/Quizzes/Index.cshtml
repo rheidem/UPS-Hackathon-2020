@@ -30,7 +30,7 @@
             </td>
             <td>
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Take" asp-route-id="@item.ID">Take Quiz</a>
+                <a asp-page="./TakeQuiz" asp-route-id="@item.ID">Take Quiz</a>
             </td>
         </tr>
         }
@@ -70,8 +70,7 @@
                 @Html.DisplayFor(modelItem => item.QuizType)
             </td>
             <td>
-                <a asp-page="./Review" asp-route-id="@item.ID">Review</a>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Review</a>
             </td>
         </tr>
         }
