@@ -13,14 +13,18 @@ namespace Hackathon.Pages_User
     public class NewAccountModel : PageModel
     {
         private readonly Hackathon.Data.hackathonContext _context;
+        public IEnumerable<SelectListItem> UserTypes { get; set; }
+        private readonly IHtmlHelper htmlHelper;
 
-        public NewAccountModel(Hackathon.Data.hackathonContext context)
+        public NewAccountModel(Hackathon.Data.hackathonContext context, IHtmlHelper htmlHelper)
         {
             _context = context;
+            this.htmlHelper = htmlHelper;
         }
 
         public IActionResult OnGet()
         {
+            UserTypes = htmlHelper.GetEnumSelectList<UserType>();
             return Page();
         }
 
@@ -36,10 +40,11 @@ namespace Hackathon.Pages_User
                 return Page();
             }
 
+            user.Set_Completed_Quizzes_JSON();
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("../Index");
+            return RedirectToPage("./Login");
         }
     }
 }
