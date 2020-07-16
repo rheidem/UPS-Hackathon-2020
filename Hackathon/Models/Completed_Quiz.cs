@@ -34,7 +34,7 @@ namespace Hackathon.Models
 
         // ANSWERS
         [NotMapped]
-        public IEnumerable<Answer> Answers { get; set; }
+        public List<Answer> Answers { get; set; }
         public string Answers_JSON { get; set; }
 
         public void Set_Completed_Quizzes_JSON()
@@ -46,7 +46,7 @@ namespace Hackathon.Models
         public void Get_Completed_Quizzes_JSON()
         {
             if(Answers_JSON != null)
-                Answers = JsonConvert.DeserializeObject<IEnumerable<Answer>>(Answers_JSON);
+                Answers = JsonConvert.DeserializeObject<List<Answer>>(Answers_JSON);
         }
     }
 }

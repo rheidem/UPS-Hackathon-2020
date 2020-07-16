@@ -59,7 +59,8 @@ namespace Hackathon.Pages_Quizzes
                 Completed_Quiz.pointsEarned += a.pointsGraded;
 
             }
-
+            
+            Completed_Quiz.Set_Completed_Quizzes_JSON();
             _context.Attach(Completed_Quiz).State = EntityState.Modified;
 
             try

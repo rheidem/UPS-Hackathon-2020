@@ -41,9 +41,9 @@
 
                 <h3>Answer Text: @Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text</h3>
                 <div class="form-group">
-                    <label asp-for="@Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text" class="control-label"></label>
-                    <input asp-for="@Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text" class="form-control" />
-                    <span asp-validation-for="@Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text" class="text-danger"></span>
+                    <label asp-for="@Model.Completed_Quiz.Answers.ElementAt(i).pointsGraded" class="control-label"></label>
+                    <input asp-for="@Model.Completed_Quiz.Answers.ElementAt(i).pointsGraded" class="form-control" />
+                    <span asp-validation-for="@Model.Completed_Quiz.Answers.ElementAt(i).pointsGraded" class="text-danger"></span>
                 </div>
             }
             <div class="form-group">

@@ -29,7 +29,8 @@
                 @Html.DisplayFor(modelItem => item.RelatedJob)
             </td>
             <td>
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Take" asp-route-id="@item.ID">Take Quiz</a>
             </td>
         </tr>
         }

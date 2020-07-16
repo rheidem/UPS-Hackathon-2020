@@ -10,6 +10,10 @@ namespace Hackathon.Models
 {
     public class Answer
     {
+        public Answer(QuestionType qt) {
+            this.QuestionType = qt;
+        }
+
         [Required]
         public QuestionType QuestionType { get; set; }
 

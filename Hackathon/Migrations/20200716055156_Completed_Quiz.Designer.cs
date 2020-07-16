@@ -3,14 +3,16 @@ using Hackathon.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hackathon.Migrations
 {
     [DbContext(typeof(hackathonContext))]
-    partial class hackathonContextModelSnapshot : ModelSnapshot
+    [Migration("20200716055156_Completed_Quiz")]
+    partial class Completed_Quiz
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
