@@ -25,9 +25,9 @@ namespace Hackathon.Pages_Quizzes
 
         public void OnGet()
         {
-            Quiz = from q in _context.Quizzes select q;
+            Quiz = from q in _context.Quizzes orderby q.Name select q;
             user = from u in _context.Users select u;
-            Completed_Quizzes = from cq in _context.Completed_Quiz select cq;
+            Completed_Quizzes = from cq in _context.Completed_Quiz orderby cq.QuiztakerName, cq.QuizType select cq;
 
             // foreach(User u in user)
             // {
