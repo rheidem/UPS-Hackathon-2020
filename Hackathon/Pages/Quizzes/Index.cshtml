@@ -14,16 +14,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Quiz[0].Name)
+                @Html.DisplayNameFor(model => model.Quiz.First().Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quiz[0].TotalPoints)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quiz[0].RelatedJob)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quiz[0].Questions_JSON)
+                @Html.DisplayNameFor(model => model.Quiz.First().RelatedJob)
             </th>
             <th></th>
         </tr>
@@ -35,13 +29,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotalPoints)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.RelatedJob)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Questions_JSON)
             </td>
             <td>
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a>

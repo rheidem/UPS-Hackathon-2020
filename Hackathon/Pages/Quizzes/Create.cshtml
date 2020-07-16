@@ -1,10 +1,37 @@
 @page
+@using Hackathon.Pages_Quizzes
 @model Hackathon.Pages_Quizzes.CreateModel
 
 @{
     ViewData["Title"] = "Create";
 }
+<script type="text/javascript">
+    $(document).ready(function() {
+        //Creates the Button array
+        var requestIDArray = document.getElementsByClassName("requestID"); 
+        for (let n=0, length = requestIDArray.length; n < length; n++) {
+            requestIDArray[n].id= "button_" + n; 
+        }
 
+        //Creates the partial view array
+        var viewArray = document.getElementsByClassName("view"); 
+        for (let n=0, length = viewArray.length; n < length; n++) {
+            viewArray[n].id= "view_" + n; 
+        }
+
+        //Hides the partial views initially
+        for (let n=0, length = requestIDArray.length; n < length; n++) {
+            $("#view_" + n).hide();
+        }
+
+        //Assigns the buttons to the partial views
+        for (let n=0, length = requestIDArray.length; n < length; n++) {
+            $("#button_" + n).click(function() {
+                $("#view_" + n).toggle();
+            });
+        }
+    });
+</script>
 <h1>Create</h1>
 
 <h4>Quiz</h4>
@@ -19,19 +46,14 @@
                 <span asp-validation-for="Quiz.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quiz.TotalPoints" class="control-label"></label>
-                <input asp-for="Quiz.TotalPoints" class="form-control" />
-                <span asp-validation-for="Quiz.TotalPoints" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Quiz.RelatedJob" class="control-label"></label>
                 <input asp-for="Quiz.RelatedJob" class="form-control" />
                 <span asp-validation-for="Quiz.RelatedJob" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quiz.Questions_JSON" class="control-label"></label>
-                <input asp-for="Quiz.Questions_JSON" class="form-control" />
-                <span asp-validation-for="Quiz.Questions_JSON" class="text-danger"></span>
+                <label asp-for="@Model.Questions" class="control-label"></label>
+                <textarea asp-for="@Model.Questions" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="@Model.Questions" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -39,8 +61,53 @@
         </form>
     </div>
 </div>
-
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">All Quizzes</a>
 </div>
+<hr />
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:15%">
+                Name
+            </th>
+            <th style="width:15%">
+                Number Of Points
+            </th>
+            <th style="width:15%">
+                Question Type
+            </th>
+            <th style="width:15%">
+                Tags
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.All_Questions) {
+            <tr>
+                <td>
+                    <a class="requestID" style="color: #0069d9;" type="button">@item.Name</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumPoints)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionType)
+                </td>
+                <td>
+                    @item.Tags.ElementAt(0) @item.Tags.ElementAt(1)
+                </td>
+            </tr>
+            <tr class="view">
+                <td colspan="4">
+                    @if(item != null)
+                    {
+                        @await Html.PartialAsync("~/Pages/DetailPartialView/_detailPartialView.cshtml", item)
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 

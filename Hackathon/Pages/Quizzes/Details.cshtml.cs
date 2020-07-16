@@ -29,6 +29,12 @@ namespace Hackathon.Pages_Quizzes
             }
 
             Quiz = await _context.Quizzes.FirstOrDefaultAsync(m => m.ID == id);
+            Quiz.Get_Questions_JSON();
+            foreach(Question q in Quiz.Questions)
+            {
+                q.Get_MCAnswers_JSON();
+                q.Get_Tags_JSON();
+            }
 
             if (Quiz == null)
             {

@@ -1,29 +1,28 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Hackathon.Data;
 using Hackathon.Models;
 
-namespace Hackathon.Pages_Quizzes
+namespace Pages.DetailPartialView
 {
-    public class IndexModel : PageModel
+    public class _detailPartialViewModel : PageModel
     {
         private readonly Hackathon.Data.hackathonContext _context;
 
-        public IndexModel(Hackathon.Data.hackathonContext context)
+        public _detailPartialViewModel(Hackathon.Data.hackathonContext context)
         {
             _context = context;
         }
 
-        public IEnumerable<Quiz> Quiz { get;set; }
+        public Question Question { get; set; }
 
-        public void OnGet()
+        public void OnGet(Question q_in)
         {
-            Quiz = from q in _context.Quizzes select q;
+            this.Question = q_in;
         }
     }
 }

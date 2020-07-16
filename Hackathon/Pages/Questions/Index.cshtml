@@ -33,30 +33,30 @@
                 @Html.DisplayNameFor(model => model.Question.First().QuestionType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Question.First().Tags_JSON)
+                @Html.DisplayNameFor(model => model.Question.First().Tags)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Question) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumPoints)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuestionType)
-            </td>
-            <td>
-                @item.Tags.ElementAt(0) @item.Tags.ElementAt(1)
-            </td>
-            <td>
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Question) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumPoints)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionType)
+                    </td>
+                    <td>
+                        @item.Tags.ElementAt(0) @item.Tags.ElementAt(1)
+                    </td>
+                    <td>
+                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
+                    </td>
+                </tr>
+        }
     </tbody>
 </table>

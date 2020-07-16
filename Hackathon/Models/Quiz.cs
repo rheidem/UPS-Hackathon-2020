@@ -17,10 +17,10 @@ namespace Hackathon.Models
         [Required]
         public string Name { get; set; }
 
-        [Required]
+        [Required,Display(Name="Total Points")]
         public int TotalPoints { get; set; }
 
-        [Required]
+        [Required,Display(Name="Related Job")]
         public string RelatedJob { get; set; }
 
         // QUESTIONS
