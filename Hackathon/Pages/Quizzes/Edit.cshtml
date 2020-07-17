@@ -8,31 +8,23 @@
 <br>
 <h1>Grading Quiz</h1>
 <hr />
-<br>
 <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="Completed_Quiz.ID" />
-    @* 
-    @for(int i = 0; i < Model.Completed_Quiz.Answers.Count(); ++i)
-    {
-        <h3>Name: @Model.Quiz.Questions.ElementAt(i).Name</h3>
-        <h5>Number of Points: @Model.Quiz.Questions.ElementAt(i).NumPoints</h5>
-        <h5>Question Text: @Model.Quiz.Questions.ElementAt(i).QuestionText</h5>
-        <h5>Question Code: @Model.Quiz.Questions.ElementAt(i).QuestionCode</h5>
-        <h5>Correct MC Answer: @Model.Quiz.Questions.ElementAt(i).Correct_MCAnswer</h5>
-
-        <h3>Answer Text: @Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text</h3>
-        <div class="form-group">
-            <label asp-for="@Model.AnswerScores[i]" class="control-label"></label>
-            <input asp-for="@Model.AnswerScores[i]" class="form-control" />
-            <span asp-validation-for="@Model.AnswerScores[i]" class="text-danger"></span>
-        </div>
-    } *@
     <div class="container">
-        <h4>@Model.Completed_Quiz.QuiztakerName</h4>
-        <h4>@Model.Completed_Quiz.CorrespondingQuizName</h4>
-        <h4>@Model.Completed_Quiz.maxPoints</h4>
-        <h4>@Model.Completed_Quiz.QuizType</h4>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item h5">Applicant: @Model.Completed_Quiz.QuiztakerName</li>
+            <li class="list-group-item h5">Quiz Taken: @Model.Completed_Quiz.CorrespondingQuizName</li>
+            @if(@Model.Completed_Quiz.QuizType == QuizType.Graded)
+            {
+            <li class="list-group-item h5">Score: <span class="text-success">@Model.Completed_Quiz.pointsEarned/@Model.Completed_Quiz.maxPoints</span></li>
+            }
+            else
+            {
+            <li class="list-group-item h5">Max Points: @Model.Completed_Quiz.maxPoints</li>
+            }
+            <li class="list-group-item h5">Quiz Status: @Model.Completed_Quiz.QuizType</li>
+        </ul>
     </div>
     @for(int i = 0; i < Model.Quiz.Questions.Count(); ++i)
     {
@@ -47,14 +39,13 @@
                     @if(@Model.Quiz.Questions.ElementAt(i).QuestionType == QuestionType.multiple_choice)
                     {
                         <br>
-                        <h5>Correct Answer: @Model.Quiz.Questions.ElementAt(i).Correct_MCAnswer</h5>
-                        <br>
-                        <h5>Answer Text: @Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text</h5>
+                        <h6 class="text-success">Correct Answer: @Model.Quiz.Questions.ElementAt(i).Correct_MCAnswer</h6>
+                        <h6 class="text-secondary">Answer: @Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text</h6>
                     }
                     else if(@Model.Quiz.Questions.ElementAt(i).QuestionType == QuestionType.short_answer)
                     {
                         <br>
-                        <h5>Answer Text: @Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text</h5>
+                        <h6 class="text-secondary">Answer: @Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text</h6>
                     }
                     else if(@Model.Quiz.Questions.ElementAt(i).QuestionType == QuestionType.video_response)
                     {
@@ -68,25 +59,40 @@
                         <br>
                         <textarea class="form-control" rows="5">@Model.Quiz.Questions.ElementAt(i).QuestionCode</textarea>
                         <br>
-                        <h5>Answer: @Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text</h5>
+                        <h6 class="text-secondary">Answer: @Model.Completed_Quiz.Answers.ElementAt(i).Answer_Text</h6>
                     }
                     <br>
+                    @if(@Model.Completed_Quiz.QuizType == QuizType.Pending)
+                    {
                     <div class="form-group">
                         <label class="control-label">Points Awarded</label>
                         <input asp-for="@Model.AnswerScores[i]" class="form-control" />
                         <span asp-validation-for="@Model.AnswerScores[i]" class="text-danger"></span>
                     </div>
+                    }
                 </div>
                 <div class="col"></div>
                 <div class="col">
-                    <h6 class="text-muted">@Model.Quiz.Questions.ElementAt(i).NumPoints pts</h6>
+                    @if(@Model.Completed_Quiz.QuizType == QuizType.Graded)
+                    {
+                        <h6 class="text-muted">@Model.Completed_Quiz.Answers[i].pointsGraded/@Model.Quiz.Questions.ElementAt(i).NumPoints pts</h6>
+                    }
+                    else
+                    {
+                        <h6 class="text-muted">@Model.Quiz.Questions.ElementAt(i).NumPoints pts</h6>
+                    }
                 </div>
             </div>
         </div>
     }
+    <hr />
+    <br>
+    @if(@Model.Completed_Quiz.QuizType == QuizType.Pending)
+    {
     <div class="form-group">
         <input type="submit" value="Save" class="btn btn-primary" />
     </div>
+    }
     <br>
     <div>
         <a asp-page="./Index">Back to List</a>

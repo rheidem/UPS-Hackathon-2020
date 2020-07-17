@@ -23,11 +23,17 @@ namespace Hackathon.Pages_Quizzes
         public IEnumerable<User> user { get; set; }
         public IEnumerable<Completed_Quiz> Completed_Quizzes { get; set; } 
 
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
         public void OnGet()
         {
             Quiz = from q in _context.Quizzes orderby q.Name select q;
             user = from u in _context.Users select u;
-            Completed_Quizzes = from cq in _context.Completed_Quiz orderby cq.QuiztakerName, cq.QuizType select cq;
+            Completed_Quizzes = from cq in _context.Completed_Quiz 
+                            where cq.QuiztakerName.Contains(SearchTerm) || string.IsNullOrEmpty(SearchTerm)
+                            orderby cq.QuiztakerName, cq.QuizType
+                            select cq;
 
             // foreach(User u in user)
             // {
