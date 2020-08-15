@@ -11,6 +11,10 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
+  * [Creating Questions](#creating-questions)
+  * [Creating Quizzes](#creating-quizzes)
+  * [Taking Quizzes](#taking-quizzes)
+  * [Grading Quizzes](#grading-quizzes)
 * [Contact](#contact)
 
 
@@ -51,6 +55,45 @@ dotnet run
 
 <!-- USAGE -->
 ## Usage
+
+Aside from other minor details of this application, such as the home page, creating user accounts, and logging in, there are four main aspects to the site, which are detailed below.
+
+### Creating Questions
+
+The first and most important part of this project was making questions for the quizzes. Each question has an associated question type, number of points, and multiple tags which the user can search by to find other relevant questions. 
+![Image of Creating Questions](https://github.com/rheidem/UPS-Hackathon-2020/blob/master/Portfolio_2.PNG)
+
+Here we can see a list of the questions that have already been created, with the search bar searching by question tags.
+
+### Creating Quizzes
+
+Next is to create the quizzes. Each quiz has a name, the related job, and a list of questions.
+![Image of Creating Quiz](https://github.com/rheidem/UPS-Hackathon-2020/blob/master/Portfolio_5.PNG)
+
+Above, we can see that this quiz has three questions, which are shown in a list below for convenience.
+
+![Image of Quiz List](https://github.com/rheidem/UPS-Hackathon-2020/blob/master/Portfolio_3.PNG)
+
+There is also a page for all of the quizzes, where a user can then review or take the quiz.
+
+### Taking Quizzes
+
+Once an applicant takes a quiz, they will see a list of the quiz's corresponding questions, and will have multiple input fields to answer these questions.
+
+![Image of Taking Quiz](https://github.com/rheidem/UPS-Hackathon-2020/blob/master/Portfolio_6.PNG)
+
+### Grading Quizzes
+
+Finally, after an applicant has taken a quiz, an admin (HR or hiring manager) can review the quiz and grade the questions (although in reality we wanted to make this autonomous).
+
+First select a quiz to grade:
+![Image of Pending Quizzes](https://github.com/rheidem/UPS-Hackathon-2020/blob/master/Portfolio_4.PNG)
+
+Then assign each question points
+![Image of Grading Quiz](https://github.com/rheidem/UPS-Hackathon-2020/blob/master/Portfolio_7.PNG)
+
+Applicants can then review the quizzes they have taken, where their score will appear in green at the top:
+![Image of Graded Quiz](https://github.com/rheidem/UPS-Hackathon-2020/blob/master/Portfolio_8.PNG)
 
 
 
