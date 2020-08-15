@@ -89,7 +89,7 @@ Finally, after an applicant has taken a quiz, an admin (HR or hiring manager) ca
 First select a quiz to grade:
 ![Image of Pending Quizzes](https://github.com/rheidem/UPS-Hackathon-2020/blob/master/Portfolio_4.PNG)
 
-Then assign each question points
+Then assign each question points:
 ![Image of Grading Quiz](https://github.com/rheidem/UPS-Hackathon-2020/blob/master/Portfolio_7.PNG)
 
 Applicants can then review the quizzes they have taken, where their score will appear in green at the top:
